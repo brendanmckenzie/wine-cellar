@@ -1,0 +1,68 @@
+container {
+  flex: 1;
+  justifyContent: flex-start;
+  alignItems: center;
+  backgroundColor: white;
+}
+
+header {
+  padding: 15;
+  backgroundColor: #7B0D1E;
+  alignSelf: stretch;
+  alignItems: center;
+  marginTop: 20;
+}
+
+headerText {
+    fontSize: 20;
+    color: white;
+}
+
+listingContainer {
+  alignSelf: stretch;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+}
+
+listingItem {
+  alignSelf: stretch;
+  padding: 20;
+  borderColor: #EEE;
+  borderStyle: solid;
+  borderBottomWidth: 1;
+}
+
+listingItemTitle {
+  fontSize: 15;
+}
+
+listingItemTitleNotAvailable {
+  textDecorationLine: line-through;
+}
+
+listingItemDetail {
+  color: #999799;
+  fontSize: 12;
+}
+
+addItemContainer {
+  padding: 10;
+}
+
+button {
+  backgroundColor: #211103;
+  borderColor: #211103;
+  borderWidth: 1;
+  borderRadius: 4;
+  marginBottom: 10;
+  alignSelf: stretch;
+  justifyContent: center;
+  padding: 5;
+}
+
+buttonText {
+  fontSize: 18;
+  color: white;
+  alignSelf: center;
+}

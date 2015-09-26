@@ -1,19 +1,4 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
-'use strict';
+import React, { AppRegistry } from 'react-native';
+import AppContainer from './app/containers/AppContainer';
 
-var React = require('react-native');
-var { AppRegistry } = React;
-
-var Home = require('./components/Home');
-
-var WineCellar = React.createClass({
-  render: function() {
-    return (<Home />);
-  }
-});
-
-
-AppRegistry.registerComponent('WineCellar', () => WineCellar);
+AppRegistry.registerComponent('WineCellar', () => AppContainer);
