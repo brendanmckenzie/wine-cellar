@@ -18,7 +18,7 @@ module.exports = React.createClass({
         }
 
         return (
-            <TouchableHighlight style={styles.listingItem} underlayColor="#eee">
+            <TouchableHighlight style={styles.listingItem} underlayColor="#eee" onPress={this.props.onPress.bind(this, this.props.item)}>
                 <View>
                     <Text style={titleClasses}>{this.props.item.winery} - {this.props.item.name}</Text>
                     <Text style={styles.listingItemDetail}>

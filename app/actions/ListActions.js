@@ -46,3 +46,36 @@ export function addItem(item) {
         database.addItem(item, item => dispatch(itemAdded(item)));
     }
 }
+
+export const ITEM_SELECTED = 'ITEM_SELECTED';
+export function itemSelected(item) {
+    return function(dispatch) {
+        dispatch({
+            type: ITEM_SELECTED,
+            item
+        });
+    }
+}
+
+export const UPDATING_ITEM = 'UPDATING_ITEM';
+function updatingItem() {
+    return {
+        type: UPDATING_ITEM
+    }
+}
+
+export const ITEM_UPDATED = 'ITEM_UPDATED';
+function itemUpdated(item) {
+    return {
+        type: ITEM_UPDATED,
+        item
+    }
+}
+
+export function updateItem(item) {
+    return function (dispatch) {
+        dispatch(updatingItem());
+
+        database.updateItem(item, item => dispatch(itemUpdated(item)));
+    }
+}

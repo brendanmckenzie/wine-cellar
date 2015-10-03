@@ -1,8 +1,6 @@
 import React, { Text, TouchableHighlight, View } from 'react-native';
 import styles from '../styles';
 import t from 'tcomb-form-native';
-import { connect } from 'react-redux/native';
-import { addItem } from '../actions/ListActions';
 import formStyles from '../formStyles';
 
 t.form.Form.stylesheet = formStyles;
@@ -60,26 +58,31 @@ const options = {
     }
 };
 
-@connect()
-class AddItem extends React.Component {
-    _handleAdd() {
-        const item = this.refs.form.getValue();
+class ItemEditor extends React.Component {
+    constructor(props) {
+        super(props);
 
-        const { dispatch } = this.props;
+        this.state = { value: props.value };
+    }
 
-        dispatch(addItem(item));
+    handlePress() {
+        this.props.onUpdate(this.state.value);
+    }
+
+    handleChange(value) {
+        this.setState({ value });
     }
 
     render() {
         return (
             <View style={styles.addItemContainer}>
-                <Form ref="form" type={Entry} options={options} />
-                <TouchableHighlight style={styles.button} onPress={this._handleAdd.bind(this)} underlayColor="#BDD358">
-                    <Text style={styles.buttonText}>Add</Text>
+                <Form ref="form" type={Entry} options={options} value={this.state.value} onChange={this.handleChange.bind(this)} />
+                <TouchableHighlight style={styles.button} onPress={this.handlePress.bind(this)} underlayColor="#BDD358">
+                    <Text style={styles.buttonText}>{this.props.buttonText || 'Update'}</Text>
                 </TouchableHighlight>
             </View>
         );
     }
 }
 
-export default AddItem;
+export default ItemEditor;

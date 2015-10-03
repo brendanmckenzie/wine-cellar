@@ -17,6 +17,18 @@ export default function Listing(state = initialState, action) {
                 items: items
             };
 
+        case 'ITEM_SELECTED':
+            return {
+                ...state,
+                selectedItem: action.item
+            };
+
+        case 'ITEM_UPDATED':
+            return {
+                ...state,
+                selectedItem: null
+            };
+
         default:
             return state;
     }

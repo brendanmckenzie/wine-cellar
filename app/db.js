@@ -13,8 +13,8 @@ class Database {
                 'name text,' +
                 'variety text,' +
                 'year text,' +
-                'bought integer,' +
-                'consumed integer,' +
+                'bought text,' +
+                'consumed text,' +
                 'notes text,' +
                 'drink_by text )', null,
             () => {},
@@ -46,6 +46,32 @@ class Database {
         this.open((err, db) => {
             db.executeSQL('insert into wines ( winery, name, variety, year, drink_by, bought, consumed, notes ) values ( ?, ?, ?, ?, ?, ?, ?, ? )',
                 [item.winery, item.name, item.variety, item.year, item.drinkBy, item.bought, item.consumed, item.notes],
+                () => {},
+                (err) => {
+                    if (err) throw err;
+
+                    var retId = null;
+
+                    db.executeSQL('select last_insert_rowid() as id', null,
+                        (row) => { retId = row['id'] },
+                        (err) => {
+                            if (err) throw err;
+
+                            item['id'] = retId;
+
+                            db.close();
+
+                            callback(item);
+                        })
+
+                });
+        });
+    }
+
+    updateItem(item, callback) {
+        this.open((err, db) => {
+            db.executeSQL('update wines set winery = ?, name = ?, variety = ?, year = ?, drink_by = ?, bought = ?, consumed = ?, notes = ? where id = ?',
+                [item.winery, item.name, item.variety, item.year, item.drinkBy, item.bought, item.consumed, item.notes, item.id],
                 () => {},
                 (err) => {
                     if (err) throw err;
